@@ -4,7 +4,8 @@ stock = [25, 5, 0, 12, 3, 18, 0, 30]
 # List to store out-of-stock products
 out_of_stock = []
 
-# List to store products that need restocking
+
+# List to store products that need restocking (stock <= 10)
 restock = []
 
 # Variable to count available products
