@@ -49,7 +49,6 @@ for stop in passengers:
 print("Stops with fewer than 10 passengers:", count)
 
 # Find busiest stop
-max_stop = ""
 max_passengers = 0
 
 for stop in passengers:
