@@ -54,7 +54,7 @@ for emp in employees:
     if emp[2] > highest[2]:
         highest = emp
 
-print("\nHighest Performer:")
+print("Highest Performer:")
 print(highest[0], highest[1], highest[2])
 
 # 4. Create list of employees scoring above 75
@@ -64,7 +64,7 @@ for emp in employees:
     if emp[2] > 75:
         high_performers.append(emp[1])
 
-print("\nHigh Performers:", high_performers)
+print("High Performers:", high_performers)
 
 # 5. Display performance categories
 print("\nPerformance Categories:")
