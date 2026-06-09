@@ -22,33 +22,31 @@
 
 # License Key Verification System
 
+# License Key Verification System
+
 key = "ABCD-EFGH-IJKL-MNOP"
 
-# Task 1 & 6: Create a list of groups
+# Split into groups
 groups = key.split("-")
-print("Groups:", groups)
 
-# Task 2: Verify number of groups
+print("Groups:", groups)
 print("Number of Groups:", len(groups))
 
-# Task 3: Count total letters
+# Count letters
 letters = 0
-
 for ch in key:
     if ch.isalpha():
         letters += 1
 
 print("Total Letters:", letters)
 
-# Task 4: Count vowels
+# Count vowels
 vowels = 0
-
 for ch in key:
-    if ch in "AEIOUaeiou":
+    if ch in "AEIOU":
         vowels += 1
 
 print("Total Vowels:", vowels)
-
 # Task 5: Remove hyphens
 merged_key = key.replace("-", "")
 print("Merged Key:", merged_key)
