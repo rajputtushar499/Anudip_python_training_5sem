@@ -37,8 +37,8 @@ percentage = (present / len(attendance)) * 100
 print("Attendance Percentage:", percentage)
 
 # Task 3: Longest Present Streak
-current_p = 0
-longest_p = 0
+current_p = 0    #how many continuous "P" (Present) have come so far
+longest_p = 0    #the longest present streak recorded so far
 
 for ch in attendance:
     if ch == "P":
