@@ -192,13 +192,12 @@ for sid in students:
         print(sid, students[sid])
 
 # 11. Top 5 performers
-print("Top 5 Performers:")
+print("Top 5 performers")
+top5 = sorted(students.items(),key=lambda student: student[1]["marks"],reverse=True)
 
-top5 = sorted(students.items(),key=lambda x: x[1]["marks"],reverse=True)[:5]
-
-for student in top5:
+# Display first 5 students
+for student in top5[:5]:
     print(student)
-
 # 12. Scholarship students (marks > 85)
 scholarship = {}
 
