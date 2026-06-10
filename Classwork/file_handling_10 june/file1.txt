@@ -1,3 +1,0 @@
-Python is easy to learn.
-It is used for web development.
-File handling is an important concept.
