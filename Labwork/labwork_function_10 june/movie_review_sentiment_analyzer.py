@@ -56,7 +56,7 @@ reviews = [
     "good music",
     "excellent climax",
     "average performance",
-    "good cinematography"
+    "good  cinematography"
 ]
 
 # ---------------- TASK 1 ----------------
@@ -84,29 +84,31 @@ def count_sentiments(reviews):
 
 # ---------------- TASK 2 ----------------
 # Most common word
+# TASK 2
 def most_common_word(reviews):
     words = []
     for r in reviews:
         words.extend(r.split())
 
     most_common = max(set(words), key=words.count)
-    print("\nMost Common Word:")
+    print("Most Common Word:")
     print(most_common)
 
 # ---------------- TASK 3 ----------------
-# Longest review
+# longest_review(reviews)
 def longest_review(reviews):
     longest = max(reviews, key=len)
-    print("\nLongest Review:")
+    print("Longest Review:")
     print(longest)
 
 # ---------------- TASK 4 ----------------
 # Reviews containing keyword
 def reviews_with_keyword(reviews, keyword):
-    print(f"\nReviews containing '{keyword}':")
-    for r in reviews:
-        if keyword in r:
-            print(r)
+    print("Reviews containing", keyword, ":")
+
+    for review in reviews:
+        if keyword in review:
+            print(review)
 
 # ---------------- MAIN PROGRAM ----------------
 count_sentiments(reviews)
