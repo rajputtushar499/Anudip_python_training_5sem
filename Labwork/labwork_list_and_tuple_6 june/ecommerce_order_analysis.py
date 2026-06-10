@@ -53,6 +53,6 @@ count = 0
 
 for product in orders:
     if product[1] < 1000:
-        count += 1
+        count += 1  
 
 print("\nProducts costing below ₹1000:", count)
