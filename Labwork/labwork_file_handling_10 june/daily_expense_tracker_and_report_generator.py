@@ -1,119 +1,208 @@
-# TASK 1
-# Read expenses from file
+#  Daily Expense Tracker and Report Generator 
+# Problem Statement 
+# Daily expenses are recorded in expenses.txt. 
+# File Format 
+# Food,450 
+# Travel,300 
+# Shopping,1200 
+# Electricity,850 
+# Internet,700 
+# Entertainment,600 
+# Medicine,400 
+# Education,1500 
+# Fuel,900 
+# Miscellaneous,250 
+# Requirements 
+# Develop a program to: 
+# 1. Display all expenses.  
+# 2. Calculate total expenditure.  
+# 3. Find the category with highest and lowest spending.  
+# 4. Display expenses greater than ₹800.  
+# 5. Add a new expense category.  
+# 6. Update an existing expense amount.  
+# 7. Generate a summary report in report.txt containing:  
+# o Total Expenses  
+# o Highest Expense Category  
+# o Lowest Expense Category  
+# o Categories spending more than ₹800 
 
-expenses = {}
+#------------------------------------------------------------------------------------------
+# Daily Expense Tracker and Report Generator
 
-try:
-    file = open("expenses.txt", "r")
+# --------------------------------------------------
+# TASK 1 - Display All Expenses
+# --------------------------------------------------
 
-    for line in file:
-        category, amount = line.strip().split(",")
-        expenses[category] = int(amount)
+file = open("expenses.txt", "r")
 
-    file.close()
+print("All Expenses:")
 
-except FileNotFoundError:
-    print("File not found")
+for line in file:
+    print(line.strip())
 
+file.close()
+print()
 
-while True:
+# --------------------------------------------------
+# TASK 2 - Calculate Total Expenditure
+# --------------------------------------------------
 
-    print("\n===== DAILY EXPENSE TRACKER =====")
-    print("1. Display All Expenses")
-    print("2. Calculate Total Expenditure")
-    print("3. Highest and Lowest Spending")
-    print("4. Display Expenses Greater Than ₹800")
-    print("5. Add New Expense Category")
-    print("6. Update Expense Amount")
-    print("7. Generate Summary Report")
-    print("8. Exit")
+file = open("expenses.txt", "r")
 
-    choice = int(input("Enter choice: "))
+total = 0
 
-    # TASK 2
-    # Display all expenses
-    if choice == 1:
-        print("\nAll Expenses:")
-        for category, amount in expenses.items():
-            print(category, "-", amount)
+for line in file:
+    data = line.strip().split(",")
+    total = total + int(data[1])
 
-    # TASK 3
-    # Calculate total expenditure
-    elif choice == 2:
-        total = sum(expenses.values())
-        print("Total Expenditure =", total)
+file.close()
 
-    # TASK 4
-    # Find highest and lowest spending category
-    elif choice == 3:
-        highest = max(expenses, key=expenses.get)
-        lowest = min(expenses, key=expenses.get)
+print("Total Expenditure: ₹", total)
+print()
 
-        print("Highest Spending Category:", highest, "-", expenses[highest])
-        print("Lowest Spending Category:", lowest, "-", expenses[lowest])
+# --------------------------------------------------
+# TASK 3 - Find Highest and Lowest Spending Category
+# --------------------------------------------------
 
-    # TASK 5
-    # Display expenses greater than ₹800
-    elif choice == 4:
-        print("\nExpenses Greater Than ₹800:")
+file = open("expenses.txt", "r")
 
-        for category, amount in expenses.items():
-            if amount > 800:
-                print(category, "-", amount)
+highest_category = ""
+lowest_category = ""
 
-    # TASK 6
-    # Add new expense category
-    elif choice == 5:
-        category = input("Enter category name: ")
-        amount = int(input("Enter amount: "))
+highest_amount = 0
+lowest_amount = 99999
 
-        expenses[category] = amount
-        print("Expense category added successfully")
+for line in file:
 
-    # TASK 7
-    # Update existing expense amount
-    elif choice == 6:
-        category = input("Enter category name: ")
+    data = line.strip().split(",")
 
-        if category in expenses:
-            new_amount = int(input("Enter new amount: "))
-            expenses[category] = new_amount
-            print("Expense updated successfully")
-        else:
-            print("Category not found")
+    category = data[0]
+    amount = int(data[1])
 
-    # TASK 8
-    # Generate summary report in report.txt
-    elif choice == 7:
+    if amount > highest_amount:
+        highest_amount = amount
+        highest_category = category
 
-        total = sum(expenses.values())
+    if amount < lowest_amount:
+        lowest_amount = amount
+        lowest_category = category
 
-        highest = max(expenses, key=expenses.get)
-        lowest = min(expenses, key=expenses.get)
+file.close()
 
-        report = open("report.txt", "w")
+print("Highest Expense Category:")
+print(highest_category, "-", highest_amount)
 
-        report.write("SUMMARY REPORT\n")
-        report.write("------------------------\n")
-        report.write("Total Expenses: " + str(total) + "\n")
-        report.write("Highest Expense Category: " + highest + " = " + str(expenses[highest]) + "\n")
-        report.write("Lowest Expense Category: " + lowest + " = " + str(expenses[lowest]) + "\n")
+print("\nLowest Expense Category:")
+print(lowest_category, "-", lowest_amount)
+print()
 
-        report.write("\nCategories Spending More Than ₹800:\n")
+# --------------------------------------------------
+# TASK 4 - Display Expenses Greater Than ₹800
+# --------------------------------------------------
 
-        for category, amount in expenses.items():
-            if amount > 800:
-                report.write(category + " = " + str(amount) + "\n")
+file = open("expenses.txt", "r")
 
-        report.close()
+print("Expenses Greater Than ₹800:")
 
-        print("Report generated successfully in report.txt")
+for line in file:
 
-    # TASK 9
-    # Exit program
-    elif choice == 8:
-        print("Program Ended")
-        break
+    data = line.strip().split(",")
 
+    if int(data[1]) > 800:
+        print(data[0], "-", data[1])
+
+file.close()
+print()
+
+# --------------------------------------------------
+# TASK 5 - Add New Expense Category
+# --------------------------------------------------
+
+category = input("Enter New Category: ")
+amount = input("Enter Amount: ")
+
+file = open("expenses.txt", "a")
+file.write("\n" + category + "," + amount)
+file.close()
+
+print("New Expense Added Successfully.")
+print()
+
+# --------------------------------------------------
+# TASK 6 - Update Existing Expense Amount
+# --------------------------------------------------
+
+update_category = input("Enter Category To Update: ")
+new_amount = input("Enter New Amount: ")
+
+file = open("expenses.txt", "r")
+lines = file.readlines()
+file.close()
+
+file = open("expenses.txt", "w")
+
+for line in lines:
+
+    data = line.strip().split(",")
+
+    if data[0] == update_category:
+        file.write(data[0] + "," + new_amount + "\n")
     else:
-        print("Invalid Choice")
+        file.write(line)
+
+file.close()
+
+print("Expense Updated Successfully.")
+print()
+
+# --------------------------------------------------
+# TASK 7 - Generate Summary Report in report.txt
+# --------------------------------------------------
+
+file = open("expenses.txt", "r")
+
+total = 0
+highest_amount = 0
+lowest_amount = 99999
+
+highest_category = ""
+lowest_category = ""
+
+more_than_800 = []
+
+for line in file:
+
+    data = line.strip().split(",")
+
+    category = data[0]
+    amount = int(data[1])
+
+    total = total + amount
+
+    if amount > highest_amount:
+        highest_amount = amount
+        highest_category = category
+
+    if amount < lowest_amount:
+        lowest_amount = amount
+        lowest_category = category
+
+    if amount > 800:
+        more_than_800.append(category)
+
+file.close()
+
+report = open("report.txt", "w")
+
+report.write("Total Expenses: " + str(total) + "\n")
+report.write("Highest Expense Category: " + highest_category + "\n")
+report.write("Lowest Expense Category: " + lowest_category + "\n")
+
+report.write("Categories Spending More Than 800:\n")
+
+for item in more_than_800:
+    report.write(item + "\n")
+
+report.close()
+
+print("Summary Report Generated Successfully.")
