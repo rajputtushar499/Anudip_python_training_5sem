@@ -29,6 +29,14 @@
 # The pace of the course was appropriate. 
  
 # Total Vowels: 76
+#------------------------------------------------------------
+
+# feedback.txt
+# The sessions were very interactive and informative.
+# Excellent teaching methodology and practical examples.
+# The pace of the course was appropriate.
+# More real-world projects should be included.
+# The trainer explained concepts very clearly.
 
 #-------------------------------------------------------------
 # Student Feedback Analysis System
