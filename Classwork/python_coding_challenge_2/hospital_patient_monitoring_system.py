@@ -37,81 +37,47 @@
 # Stable Patients: 6
 
 #---------------------------------------------------------
-# City Temperature Monitoring System
-
-temperature = {
-    "Delhi": 41,
-    "Mumbai": 33,
-    "Chennai": 37,
-    "Kolkata": 39,
-    "Bengaluru": 28,
-    "Pune": 30,
-    "Jaipur": 42,
-    "Lucknow": 40,
-    "Hyderabad": 35,
-    "Ahmedabad": 43
+# Patient heart rate data
+heart_rate = {
+    "P101": 72,
+    "P102": 105,
+    "P103": 88,
+    "P104": 120,
+    "P105": 65,
+    "P106": 98,
+    "P107": 110,
+    "P108": 70,
+    "P109": 85,
+    "P110": 130
 }
 
-#---------------------------------------------------------
-# 1. Cities with temperature above 40°C
-#---------------------------------------------------------
+# 1. Display critical patients (heart rate > 100)
+print("Critical Patients:")
+for patient, rate in heart_rate.items():
+    if rate > 100:
+        print(patient)
 
-print("Cities Above 40°C:")
+# 2. Find highest and lowest heart rate
+highest_patient = max(heart_rate, key=heart_rate.get)
+lowest_patient = min(heart_rate, key=heart_rate.get)
 
-for city in temperature:
-    if temperature[city] > 40:
-        print(city)
+print("\nHighest Heart Rate:")
+print(f"{highest_patient} ({heart_rate[highest_patient]} bpm)")
 
-#------------------------------------------------------------
-# 2. Hottest City
-#------------------------------------------------------------ 
+print("\nLowest Heart Rate:")
+print(f"{lowest_patient} ({heart_rate[lowest_patient]} bpm)")
 
-highest_temp = 0
+# 3. Calculate average heart rate
+average = sum(heart_rate.values()) / len(heart_rate)
 
-for city in temperature:
-    if temperature[city] > highest_temp:
-        highest_temp = temperature[city]
-        hottest_city = city
+print("\nAverage Heart Rate:")
+print(f"{average:.1f} bpm")
 
-print("Hottest City:")
-print(hottest_city, highest_temp, "°C")
+# 4. Count stable patients (60–100 bpm)
+stable_count = 0
 
-#-----------------------------------------------------------------
-# 3. Coolest City
-#-----------------------------------------------------------------
+for rate in heart_rate.values():
+    if 60 <= rate <= 100:
+        stable_count += 1
 
-lowest_temp = 100
-
-for city in temperature:
-    if temperature[city] < lowest_temp:
-        lowest_temp = temperature[city]
-        coolest_city = city
-
-print("Coolest City:")
-print(coolest_city, lowest_temp, "°C")
-
-#---------------------------------------------------------
-# 4. Average Temperature
-#---------------------------------------------------------
-
-total = 0
-
-for city in temperature:
-    total = total + temperature[city]
-
-average = total / len(temperature)
-
-print("Average Temperature:", average, "°C")
-
-#---------------------------------------------------------
-# 5. Pleasant Cities
-#---------------------------------------------------------
-
-pleasant_cities = []
-
-for city in temperature:
-    if temperature[city] < 35:
-        pleasant_cities.append(city)
-
-print("Pleasant Cities:")
-print(pleasant_cities)
+print("\nStable Patients:", stable_count)
